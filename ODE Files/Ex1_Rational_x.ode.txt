@@ -1,0 +1,28 @@
+# CDK1-APC Regulation with a Positive Feedback(Rational)
+# ------------------------------------------------------
+
+#-------------------------------------------------------
+# Parameter values
+#-------------------------------------------------------
+par a1=0
+#par a1=6
+par b1=0.0117188, c1=3.2, d1=0.0125
+par f1=0.0117188, g1=0.00078125, h1=3.05176e-06, p1=0.00390625
+par q1=0.00390625, r1=1.52588e-05
+par a2=4, b2=3, c2=0.00390625, d2=0.00390625
+
+
+
+############### 2D model ###################
+x1' = (-a1*x1^9*x2^8 - b1*x1^9 + c1*x2^8*x1^8 + d1*x1^8 - f1*x1*x2^8 + g1*x2^8 + h1)/(x1^8*x2^8 + p1*x1^8 + q1*x2^8 + r1)
+x2' = (-a2*x1^8*x2 + b2*x1^8 - c2*x2)/(x1^8 + d2)
+
+
+#AUTO settings
+@ meth=Stiff,dtmax=0.05,dt=0.01,total=50,maxstor=100000, bounds=1000000
+@ dsmax=0.01, dsmin=0.001, ds=0.005, ntst=50, nmax=100000, npr=10, 
+@ parmin=-2, parmax=10, normmax=1e6
+@ xlo=0, ylo=0, zlo=0, xhi=10, yhi=10, zhi=10
+@ autoxmin=0,autoxmax=10,autoymin=0, autoymax=10 
+
+done

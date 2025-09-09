@@ -1,0 +1,13 @@
+digraph {
+	dpi=200
+	rankdir=LR ratio=compress size="10,10"
+	node [color=black fillcolor=lightgoldenrodyellow fontname=Helvetica fontsize=10 shape=circle style="filled,setlinewidth(2)"]
+	edge [fontname=Helvetica fontsize=10 penwidth=2]
+	CDK1
+	APC
+	CDK1 -> APC [style=invis]
+	CDK1 -> CDK1 [label=" " arrowhead=normal color=blue]
+	APC -> CDK1 [label=" " arrowhead=tee color=red]
+	CDK1 -> APC [label=" " arrowhead=normal color=blue]
+	APC -> APC [label=" " arrowhead=tee color=red]
+}

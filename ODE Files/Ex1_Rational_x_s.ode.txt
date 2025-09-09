@@ -1,0 +1,30 @@
+# CDK1-APC Regulation with a Positive Feedback(SINDy Rational)
+# ------------------------------------------------------
+
+#-------------------------------------------------------
+# Parameter values
+#-------------------------------------------------------
+par a1=0
+#par a1=12.894
+par b1=0.022185, c1=7.005, d1=0.024815
+par f1=0.029605, g1=0.0036445, h1=5.8975e-06
+par e11=1.3111, e12=0.00096185, e13=0.0110205
+par p1=0.0084605, q1=0.0043605, r1=2.9345e-05
+
+par a2=3.919, b2=2.963, c2=0.004023
+par e2=0.0004261, d2=0.003882
+
+
+############### 2D model ###################
+s1' = (-a1*s1^9*s2^8-b1*s1^9+c1*s1^8*s2^8+d1*s1^8-f1*s1*s2^8+g1*s2^8+h1)/(e11*s1^9*s2^8+e12*s1^9+s1^8*s2^8+p1*s1^8+e13*s1*s2^8+q1*s2^8+r1)
+s2' = (-a2*s1^8*s2+b2*s1^8-c2*s2)/(s1^8+e2*s2+d2)
+
+
+#AUTO settings
+@ meth=Stiff,dtmax=0.05,dt=0.01,total=50,maxstor=100000, bounds=1000000
+@ dsmax=0.01, dsmin=0.001, ds=0.005, ntst=50, nmax=100000, npr=100, 
+@ parmin=-2, parmax=50, normmax=1e6
+@ xlo=0, ylo=0, zlo=0, xhi=10, yhi=10, zhi=10
+@ autoxmin=0,autoxmax=50,autoymin=0, autoymax=2 
+
+done

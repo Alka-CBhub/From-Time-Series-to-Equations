@@ -1,0 +1,27 @@
+# CDK1--APC Regulation with a positive Feedback
+# ---------------------------------------------------------------
+
+############## Parameter ###############
+
+par alpha1=1.5
+par alpha2=3,alpha3=3
+par beta1=3,beta2=1,beta3=1
+par K1=0.5,K2=0.5,K3=0.5
+par n1=8,n2=8,n3=8
+
+############### 2D model ###################
+CDK1S'= alpha1-beta1*CDK1S*(APCS^n1)/(K1^n1 + APCS^n1) + alpha3*(1-CDK1S)*(CDK1S^n3)/(K3^n3 + CDK1S^n3)
+APCS' = alpha2*(1-APCS)*(CDK1S^n2)/(K3^n2 + CDK1S^n2) - beta2*APCS
+
+
+#AUTO settings
+@ meth=Stiff,dtmax=0.05,dt=0.01,total=500,maxstor=100000, bounds=1000000
+@ dsmax=0.002, dsmin=0.001, ds=-0.001, ntst=50, nmax=1000, npr=1000, 
+@ parmin=-2, parmax=5, normmax=1e6
+@ autoxmin=0, autoxmax=5, autoymin=0, autoymax=1
+@ autovar=CDK1S
+#@ nplot=3,yp1=CDK1S,yp2=APCS,yp3=Plk1S
+#@ xp=T,xlo=0,ylo=0,xhigh=10, yhigh=2
+#@ xp=CDK1S,yp=APCS,xlo=0,ylo=0,xhigh=1,yhigh=1
+
+done
